@@ -1,0 +1,6 @@
+C:\Ravi\MyProjects\SPA+MV+AJs\Application\ElevatorApplication\ElevatorApplication\bin\ElevatorApplication.dll.config
+C:\Ravi\MyProjects\SPA+MV+AJs\Application\ElevatorApplication\ElevatorApplication\bin\ElevatorApplication.dll
+C:\Ravi\MyProjects\SPA+MV+AJs\Application\ElevatorApplication\ElevatorApplication\bin\ElevatorApplication.pdb
+C:\Ravi\MyProjects\SPA+MV+AJs\Application\ElevatorApplication\ElevatorApplication\obj\Debug\ElevatorApplication.csprojResolveAssemblyReference.cache
+C:\Ravi\MyProjects\SPA+MV+AJs\Application\ElevatorApplication\ElevatorApplication\obj\Debug\ElevatorApplication.dll
+C:\Ravi\MyProjects\SPA+MV+AJs\Application\ElevatorApplication\ElevatorApplication\obj\Debug\ElevatorApplication.pdb
