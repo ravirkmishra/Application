@@ -4,3 +4,9 @@ C:\Ravi\MyProjects\SPA+MV+AJs\Application\ElevatorApplication\ElevatorApplicatio
 C:\Ravi\MyProjects\SPA+MV+AJs\Application\ElevatorApplication\ElevatorApplication\obj\Debug\ElevatorApplication.csprojResolveAssemblyReference.cache
 C:\Ravi\MyProjects\SPA+MV+AJs\Application\ElevatorApplication\ElevatorApplication\obj\Debug\ElevatorApplication.dll
 C:\Ravi\MyProjects\SPA+MV+AJs\Application\ElevatorApplication\ElevatorApplication\obj\Debug\ElevatorApplication.pdb
+F:\MyProjects\Application\ElevatorApplication\ElevatorApplication\bin\ElevatorApplication.dll.config
+F:\MyProjects\Application\ElevatorApplication\ElevatorApplication\bin\ElevatorApplication.dll
+F:\MyProjects\Application\ElevatorApplication\ElevatorApplication\bin\ElevatorApplication.pdb
+F:\MyProjects\Application\ElevatorApplication\ElevatorApplication\obj\Debug\ElevatorApplication.csprojResolveAssemblyReference.cache
+F:\MyProjects\Application\ElevatorApplication\ElevatorApplication\obj\Debug\ElevatorApplication.dll
+F:\MyProjects\Application\ElevatorApplication\ElevatorApplication\obj\Debug\ElevatorApplication.pdb
