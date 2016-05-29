@@ -25,12 +25,15 @@
 
     <script src="Scripts/jquery-2.2.4.min.js"></script>
     <script>
+
+
         $(document).ready(function () {
             $("#imgbtnUpArrow0").before("0th Floor");
             $("#imgbtnUpArrow1").before("1st Floor");
             $("#imgbtnUpArrow2").before("2nd Floor");
             $("#imgbtnUpArrow3").before("3rd Floor");
             $("#imgbtnDownArrow4").before("4th Floor");
+
         });
     </script>
 
@@ -38,6 +41,9 @@
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="MainScriptManager" runat="server"></asp:ScriptManager>
+        <asp:Timer ID="timer1" runat="server" Interval="1000"
+            OnTick="timer1_tick">
+        </asp:Timer>
         <asp:UpdateProgress ID="updProgress"
             AssociatedUpdatePanelID="upnlPostionTime"
             runat="server">
@@ -53,15 +59,27 @@
                         <tr>
                             <td style="border: 1px solid black">The lift is at :<asp:Label runat="server" ID="lblFloorPosition"></asp:Label>
                             </td>
+
                             <td style="border: 1px solid black">You will reach your destination in:
-                        <asp:Label runat="server" ID="lblTimeTaken" Text="5 Seconds"></asp:Label></td>
+                        <asp:Label runat="server" ID="lblTimeTaken"></asp:Label></td>
                             <td>
                                 <asp:Button ID="btnInvoke" runat="server" Text="Click" OnClick="btnInvoke_Click" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black">First Called from:
+                                <asp:Label runat="server" ID="lblCalledFrom"></asp:Label>
+                            </td>
+                            <td style="border: 1px solid black">Direction of Movement is:
+                                <asp:Label runat="server" ID="lblDirection"></asp:Label>
                             </td>
                         </tr>
                     </table>
                 </div>
             </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="timer1" EventName="tick" />
+            </Triggers>
         </asp:UpdatePanel>
         <br />
         <br />
@@ -91,7 +109,7 @@
                         <asp:ImageButton runat="server" ID="imgbtnDownArrow2" ImageUrl="~/Images/Down.png" OnClick="imgbtnDownArrow2_Click" />
                     </td>
                 </tr>
-                 <tr class="tr">
+                <tr class="tr">
                     <td class="auto-style1;" runat="server" id="td1">
                         <asp:ImageButton runat="server" ID="imgbtnUpArrow1" ImageUrl="~/Images/Up.png" OnClick="imgbtnUpArrow1_Click" />
                     </td>
@@ -105,23 +123,27 @@
                     </td>
                 </tr>
 
-                <tr runat="server" id="trInsideButton">
-                    <td class="auto-style1">
-                        <asp:ImageButton runat="server" ID="imgbtn1stFloor" ImageUrl="~/Images/1st.png" /></td>
-                    <td>
-                        <asp:ImageButton runat="server" ID="imgbtn2ndFloor" ImageUrl="~/Images/2nd.png" />
-                    </td>
-                    <td>
-                        <asp:ImageButton runat="server" ID="imgbtn3rdFloor" ImageUrl="~/Images/3rd.png" />
-                    </td>
-                    <td>
-                        <asp:ImageButton runat="server" ID="imgbtn4thFloor" ImageUrl="~/Images/4th.png" />
-                    </td>
-                    <td>
-                        <asp:ImageButton runat="server" ID="imgbtn5thFloor" ImageUrl="~/Images/5th.png" />
-                    </td>
-                </tr>
             </table>
+            <div id="trInsideButton" runat="server">
+                <table>
+                    <tr>
+                        <td class="auto-style1">
+                            <asp:ImageButton runat="server" ID="imgbtn1stFloor" ImageUrl="~/Images/1st.png" OnClick="imgbtn1stFloor_Click" /></td>
+                        <td>
+                            <asp:ImageButton runat="server" ID="imgbtn2ndFloor" ImageUrl="~/Images/2nd.png" OnClick="imgbtn2ndFloor_Click" />
+                        </td>
+                        <td>
+                            <asp:ImageButton runat="server" ID="imgbtn3rdFloor" ImageUrl="~/Images/3rd.png" OnClick="imgbtn3rdFloor_Click" />
+                        </td>
+                        <td>
+                            <asp:ImageButton runat="server" ID="imgbtn4thFloor" ImageUrl="~/Images/4th.png" OnClick="imgbtn4thFloor_Click" />
+                        </td>
+                        <td>
+                            <asp:ImageButton runat="server" ID="imgbtn5thFloor" ImageUrl="~/Images/5th.png" OnClick="imgbtn5thFloor_Click" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </form>
 </body>

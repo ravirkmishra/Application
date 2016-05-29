@@ -12,5 +12,6 @@ namespace ElevatorApplication
         int currentPosition { get; set; }
         Dictionary<int, int> CurrentRequestQueue { get; set; }
         Dictionary<int, int> postRequestQueue { get; set; }
+        int destinationFloor { get; set; }
     }
 }

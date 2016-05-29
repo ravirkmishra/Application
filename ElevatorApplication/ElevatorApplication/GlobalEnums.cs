@@ -8,7 +8,8 @@ namespace ElevatorApplication
     public class GlobalEnums
     {
         public static string defaulFloor = " Floor";
-        public static string defaulTime = "00:00";
+        public static string defaulTime = "5";
+        public static string Seconds = " Seconds";
 
         public enum Floor
         {

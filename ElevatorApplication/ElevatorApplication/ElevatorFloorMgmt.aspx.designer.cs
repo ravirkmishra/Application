@@ -31,6 +31,15 @@ namespace ElevatorApplication {
         protected global::System.Web.UI.ScriptManager MainScriptManager;
         
         /// <summary>
+        /// timer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer timer1;
+        
+        /// <summary>
         /// updProgress control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,24 @@ namespace ElevatorApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnInvoke;
+        
+        /// <summary>
+        /// lblCalledFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCalledFrom;
+        
+        /// <summary>
+        /// lblDirection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDirection;
         
         /// <summary>
         /// td8 control.
@@ -226,7 +253,7 @@ namespace ElevatorApplication {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow trInsideButton;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl trInsideButton;
         
         /// <summary>
         /// imgbtn1stFloor control.
