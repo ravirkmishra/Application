@@ -44,14 +44,14 @@
         <asp:Timer ID="timer1" runat="server" Interval="1000"
             OnTick="timer1_tick">
         </asp:Timer>
-        <asp:UpdateProgress ID="updProgress"
+      <%--  <asp:UpdateProgress ID="updProgress"
             AssociatedUpdatePanelID="upnlPostionTime"
             runat="server">
             <ProgressTemplate>
                 <img alt="progress" src="images/ProgressBar.png" />
                 Processing...           
             </ProgressTemplate>
-        </asp:UpdateProgress>
+        </asp:UpdateProgress>--%>
         <asp:UpdatePanel ID="upnlPostionTime" runat="server">
             <ContentTemplate>
                 <div>
@@ -76,6 +76,26 @@
                         </tr>
                     </table>
                 </div>
+                 <div id="trInsideButton" runat="server">
+                <table>
+                    <tr>
+                        <td class="auto-style1">
+                            <asp:ImageButton runat="server" ID="imgbtn1stFloor" ImageUrl="~/Images/1st.png" OnClick="imgbtn1stFloor_Click" /></td>
+                        <td>
+                            <asp:ImageButton runat="server" ID="imgbtn2ndFloor" ImageUrl="~/Images/2nd.png" OnClick="imgbtn2ndFloor_Click" />
+                        </td>
+                        <td>
+                            <asp:ImageButton runat="server" ID="imgbtn3rdFloor" ImageUrl="~/Images/3rd.png" OnClick="imgbtn3rdFloor_Click" />
+                        </td>
+                        <td>
+                            <asp:ImageButton runat="server" ID="imgbtn4thFloor" ImageUrl="~/Images/4th.png" OnClick="imgbtn4thFloor_Click" />
+                        </td>
+                        <td>
+                            <asp:ImageButton runat="server" ID="imgbtn5thFloor" ImageUrl="~/Images/5th.png" OnClick="imgbtn5thFloor_Click" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="timer1" EventName="tick" />
@@ -124,26 +144,7 @@
                 </tr>
 
             </table>
-            <div id="trInsideButton" runat="server">
-                <table>
-                    <tr>
-                        <td class="auto-style1">
-                            <asp:ImageButton runat="server" ID="imgbtn1stFloor" ImageUrl="~/Images/1st.png" OnClick="imgbtn1stFloor_Click" /></td>
-                        <td>
-                            <asp:ImageButton runat="server" ID="imgbtn2ndFloor" ImageUrl="~/Images/2nd.png" OnClick="imgbtn2ndFloor_Click" />
-                        </td>
-                        <td>
-                            <asp:ImageButton runat="server" ID="imgbtn3rdFloor" ImageUrl="~/Images/3rd.png" OnClick="imgbtn3rdFloor_Click" />
-                        </td>
-                        <td>
-                            <asp:ImageButton runat="server" ID="imgbtn4thFloor" ImageUrl="~/Images/4th.png" OnClick="imgbtn4thFloor_Click" />
-                        </td>
-                        <td>
-                            <asp:ImageButton runat="server" ID="imgbtn5thFloor" ImageUrl="~/Images/5th.png" OnClick="imgbtn5thFloor_Click" />
-                        </td>
-                    </tr>
-                </table>
-            </div>
+           
         </div>
     </form>
 </body>

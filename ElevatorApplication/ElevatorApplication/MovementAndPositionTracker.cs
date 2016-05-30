@@ -113,7 +113,7 @@ namespace ElevatorApplication
             }
            
         }
-        public string CheckDirction(int calledFrom, int CurrentPosition)
+        public string CheckDirection(int calledFrom, int CurrentPosition)
         {
             if (calledFrom > CurrentPosition)
             {
