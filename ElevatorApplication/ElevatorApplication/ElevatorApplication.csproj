@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="ElevatorFloorMgmt.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\0th.png" />
     <Content Include="Images\1st.png" />
     <Content Include="Images\2nd.png" />
     <Content Include="Images\3rd.png" />

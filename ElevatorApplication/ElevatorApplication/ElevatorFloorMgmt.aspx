@@ -80,7 +80,10 @@
                 <table>
                     <tr>
                         <td class="auto-style1">
-                            <asp:ImageButton runat="server" ID="imgbtn1stFloor" ImageUrl="~/Images/1st.png" OnClick="imgbtn1stFloor_Click" /></td>
+                            <asp:ImageButton runat="server" ID="imgbtn0thFloor" ImageUrl="~/Images/0th.png" OnClick="imgbtn0thFloor_Click" /></td>
+                        <td>
+                            <asp:ImageButton runat="server" ID="imgbtn1stFloor" ImageUrl="~/Images/1st.png" OnClick="imgbtn1stFloor_Click" />
+                        </td>
                         <td>
                             <asp:ImageButton runat="server" ID="imgbtn2ndFloor" ImageUrl="~/Images/2nd.png" OnClick="imgbtn2ndFloor_Click" />
                         </td>
@@ -89,9 +92,6 @@
                         </td>
                         <td>
                             <asp:ImageButton runat="server" ID="imgbtn4thFloor" ImageUrl="~/Images/4th.png" OnClick="imgbtn4thFloor_Click" />
-                        </td>
-                        <td>
-                            <asp:ImageButton runat="server" ID="imgbtn5thFloor" ImageUrl="~/Images/5th.png" OnClick="imgbtn5thFloor_Click" />
                         </td>
                     </tr>
                 </table>

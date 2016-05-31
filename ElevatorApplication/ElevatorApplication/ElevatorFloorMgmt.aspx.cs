@@ -29,6 +29,25 @@ namespace ElevatorApplication
             if (!MainScriptManager.IsInAsyncPostBack)
             {
                 SetTime(0);
+                if (Session["CurrentPosition"] !=null && Session["RequestFrom"] != null)
+                {
+                    if (Session["CurrentPosition"].ToString() == Session["RequestFrom"].ToString())
+                    {
+                        AddSecondsOnReachingDestination();
+                    }
+                }
+               
+               
+            }
+        }
+
+        private void AddSecondsOnReachingDestination()
+        {
+            if (!MainScriptManager.IsInAsyncPostBack)
+            {
+                Session["timeout"] = DateTime.Now.AddSeconds(int.Parse(GlobalEnums.defaulTime) + 3).ToString();
+                trInsideButton.Visible = true;
+                timer1.Enabled = true;
             }
         }
 
@@ -36,7 +55,7 @@ namespace ElevatorApplication
         {
             if (!MainScriptManager.IsInAsyncPostBack)
             {
-                Session["timeout"] = DateTime.Now.AddSeconds(int.Parse(GlobalEnums.defaulTime) * timeMultiplier).ToString();
+                Session["timeout"] = DateTime.Now.AddSeconds(int.Parse(GlobalEnums.defaulTime) * timeMultiplier+2).ToString();
             }
 
         }
@@ -147,7 +166,7 @@ namespace ElevatorApplication
                 int requestCompleted = (int)Session["requestCompleted"];
                 //Setting the Floor Position Dynamically while Moving
                 //we have to stop in middle if there are other request while going on the way
-                int resetSessionDone = 0;
+                
 
                 if (myDictionary.Count == 1)
                 {
@@ -158,13 +177,34 @@ namespace ElevatorApplication
 
                     if ((int)Session["CurrentPosition"] == (int)Session["RequestFrom"])
                     {
-                        trInsideButton.Visible = true;
+                        //trInsideButton.Visible = true;
+                        if (Session["LastFloorPosition"] == null)
+                        {
+                            trInsideButton.Visible = true;
+                        }
+
+                        if (Session["LastFloorPosition"] != null)
+                        {
+                            int localCurrentpos = Convert.ToInt32(Session["CurrentPosition"]);
+                            int localLastpos = Convert.ToInt32(Session["LastFloorPosition"]);
+                            if (localCurrentpos > localLastpos)
+                            {
+                                trInsideButton.Visible = false;
+                                Session.Remove("LastFloorPosition");
+                            }
+                        }
+
+                        if (trInsideButton.Visible == true)
+                        {
+                            timer1.Enabled = false;
+                        }
                     }
                     else
                     {
                         trInsideButton.Visible = false;
                     }
-                    resetSessionDone = 1;
+
+                   
                 }
                 else if (myDictionary.Count > 1)
                 {
@@ -180,31 +220,25 @@ namespace ElevatorApplication
                     // for Up movement 
                     if (directionofMovement == 1)
                     {
-
-                        //Check no of request Completed (floor crossed) as while processing first call the dictionary had 1 key value pair 
-                        //if (resetSessionDone == 1)
-                        //{
-                        //    ResetCurrentPositionAndRequestCompleted((int)Session["requestCompleted"]);
-                        //}
-
-                        //int timerunning2 = ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).TotalSeconds);
-                        //lblFloorPosition.Text = obj.CheckFloorPosition(ref currentPosition, (int)Session["RequestFrom"], timerunning2, ref requestCompleted);
-                        //Session["CurrentPosition"] = currentPosition;
-                        //Session["requestCompleted"] = requestCompleted;
-
-                        if (Session["CurrentPosition"].ToString() == Session["RequestFrom"].ToString())
+                        if ((int)Session["CurrentPosition"] == (int)Session["RequestFrom"])
                         {
-                            
-                            //Stop timer at RequestFrom floor - i.e. first request
-                            if ((bool)Session["InputTaken"] == false)
+                           
+                            if (Session["LastFloorPosition"] == null)
                             {
                                 trInsideButton.Visible = true;
                             }
-                            else if((bool)Session["InputTaken"] == true)
+
+                            if (Session["LastFloorPosition"] != null)
                             {
-                                trInsideButton.Visible = false;
+                                int localCurrentpos = Convert.ToInt32(Session["CurrentPosition"]);
+                                int localLastpos = Convert.ToInt32(Session["LastFloorPosition"]);
+                                if (localCurrentpos > localLastpos)
+                                {
+                                    trInsideButton.Visible = false;
+                                    Session.Remove("LastFloorPosition");
+                                }
                             }
-                            
+
                             if (trInsideButton.Visible == true)
                             {
                                 timer1.Enabled = false;
@@ -217,16 +251,22 @@ namespace ElevatorApplication
                         {
                             foreach (KeyValuePair<int, int> item in preRequestQ)
                             {
-                                
                                 if ((int)Session["CurrentPosition"] == item.Key)
                                 {
-                                    if ((bool)Session["InputTaken"] == false)
+                                    if (Session["LastFloorPosition"] == null)
                                     {
                                         trInsideButton.Visible = true;
                                     }
-                                    else if ((bool)Session["InputTaken"] == true)
+
+                                    if (Session["LastFloorPosition"] != null)
                                     {
-                                        trInsideButton.Visible = false;
+                                        int localCurrentpos = Convert.ToInt32(Session["CurrentPosition"]);
+                                        int localLastpos = Convert.ToInt32(Session["LastFloorPosition"]);
+                                        if (localCurrentpos > localLastpos)
+                                        {
+                                            trInsideButton.Visible = false;
+                                            Session.Remove("LastFloorPosition");
+                                        }
                                     }
 
                                     if (trInsideButton.Visible == true)
@@ -326,7 +366,7 @@ namespace ElevatorApplication
             }
             if (trInsideButton.Visible == true)
             {
-                Session["timeout"] = DateTime.Now.AddSeconds(previousTime + 2).ToString();
+                Session["timeout"] = DateTime.Now.AddSeconds(previousTime + 3).ToString();
                 trInsideButton.Visible = false;
                 Session["InputTaken"] = true;
                 timer1.Enabled = true;
@@ -363,62 +403,96 @@ namespace ElevatorApplication
         }
 
         #region Taking Input Section
+        protected void imgbtn0thFloor_Click(object sender, ImageClickEventArgs e)
+        {
+            timer1.Enabled = false;
+            Dictionary<int, int> reqFor0thfloor = new Dictionary<int, int>();
+            reqFor0thfloor.Add(0, 1);
+            Session["LastFloorPosition"] = (int)Session["CurrentPosition"];
+            int previousTime = int.Parse(lblTimeTaken.Text.Remove(2, 8));
+            SetPreviousTime(previousTime, imgbtn0thFloor);
+            MainScriptManager.RegisterAsyncPostBackControl(imgbtn0thFloor);
+            AddCurrentUpRequests(reqFor0thfloor);
+        }
+
+
+
         protected void imgbtn1stFloor_Click(object sender, ImageClickEventArgs e)
         {
             timer1.Enabled = false;
             Dictionary<int, int> reqFor1stfloor = new Dictionary<int, int>();
-            reqFor1stfloor.Add(1, 0);
+            //Button pressed while going up
+            reqFor1stfloor.Add(1, 1);
+            int lastposition = (int)Session["CurrentPosition"];
+            Session["LastFloorPosition"] = lastposition;
+            AddCurrentUpRequests(reqFor1stfloor);
             int previousTime = int.Parse(lblTimeTaken.Text.Remove(2, 8));
             SetPreviousTime(previousTime, imgbtn1stFloor);
             MainScriptManager.RegisterAsyncPostBackControl(imgbtn1stFloor);
+
         }
 
         protected void imgbtn2ndFloor_Click(object sender, ImageClickEventArgs e)
         {
             timer1.Enabled = false;
-            Dictionary<int, int> reqFor1stfloor = new Dictionary<int, int>();
-            reqFor1stfloor.Add(2, 0);
+            Dictionary<int, int> reqFor2ndfloor = new Dictionary<int, int>();
+            reqFor2ndfloor.Add(2, 1);
+            int lastposition = (int)Session["CurrentPosition"];
+            Session["LastFloorPosition"] = lastposition;
             int previousTime = int.Parse(lblTimeTaken.Text.Remove(2, 8));
-           
+            AddCurrentUpRequests(reqFor2ndfloor);
             SetPreviousTime(previousTime, imgbtn2ndFloor);
             MainScriptManager.RegisterAsyncPostBackControl(imgbtn2ndFloor);
+
         }
 
         protected void imgbtn3rdFloor_Click(object sender, ImageClickEventArgs e)
         {
             timer1.Enabled = false;
-            Dictionary<int, int> reqFor1stfloor = new Dictionary<int, int>();
-            reqFor1stfloor.Add(3, 0);
+            Dictionary<int, int> reqFor3rdfloor = new Dictionary<int, int>();
+            reqFor3rdfloor.Add(3, 1);
+            int lastposition = (int)Session["CurrentPosition"];
+            Session["LastFloorPosition"] = lastposition;
             int previousTime = int.Parse(lblTimeTaken.Text.Remove(2, 8));
-         
+            AddCurrentUpRequests(reqFor3rdfloor);
             SetPreviousTime(previousTime, imgbtn3rdFloor);
             MainScriptManager.RegisterAsyncPostBackControl(imgbtn3rdFloor);
+
         }
 
         protected void imgbtn4thFloor_Click(object sender, ImageClickEventArgs e)
         {
             timer1.Enabled = false;
-            Dictionary<int, int> reqFor1stfloor = new Dictionary<int, int>();
-            reqFor1stfloor.Add(4, 0);
+            Dictionary<int, int> reqFor4thfloor = new Dictionary<int, int>();
+            reqFor4thfloor.Add(4, 1);
+            int lastposition = (int)Session["CurrentPosition"];
+            Session["LastFloorPosition"] = lastposition;
             int previousTime = int.Parse(lblTimeTaken.Text.Remove(2, 8));
-            
+            AddCurrentUpRequests(reqFor4thfloor);
             SetPreviousTime(previousTime, imgbtn4thFloor);
             MainScriptManager.RegisterAsyncPostBackControl(imgbtn4thFloor);
-        }
 
-        protected void imgbtn5thFloor_Click(object sender, ImageClickEventArgs e)
-        {
-            timer1.Enabled = false;
-            Dictionary<int, int> reqFor1stfloor = new Dictionary<int, int>();
-            reqFor1stfloor.Add(5, 0);
-            int previousTime = int.Parse(lblTimeTaken.Text.Remove(2, 8));
-           
-            SetPreviousTime(previousTime, imgbtn5thFloor);
-            MainScriptManager.RegisterAsyncPostBackControl(imgbtn5thFloor);
         }
 
         #endregion
+        private void AddCurrentUpRequests(Dictionary<int, int> reqForAnyfloor)
+        {
+            if (Session["CurrentRequestUp"] != null)
+            {
+                Dictionary<int, int> temp = new Dictionary<int, int>();
+                temp = (Dictionary<int, int>)Session["CurrentRequestUp"];
 
-
+                if (!temp.Keys.Contains(reqForAnyfloor.Keys.First()))
+                {
+                    reqForAnyfloor.ToList().ForEach(x => temp.Add(x.Key, x.Value));
+                }
+               
+                Session["CurrentRequestUp"] = temp;
+            }
+            else
+            {
+                Session["CurrentRequestUp"] = reqForAnyfloor;
+            }
+        }
     }
 }

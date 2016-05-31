@@ -103,6 +103,15 @@ namespace ElevatorApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl trInsideButton;
         
         /// <summary>
+        /// imgbtn0thFloor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imgbtn0thFloor;
+        
+        /// <summary>
         /// imgbtn1stFloor control.
         /// </summary>
         /// <remarks>
@@ -137,15 +146,6 @@ namespace ElevatorApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton imgbtn4thFloor;
-        
-        /// <summary>
-        /// imgbtn5thFloor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgbtn5thFloor;
         
         /// <summary>
         /// td8 control.
