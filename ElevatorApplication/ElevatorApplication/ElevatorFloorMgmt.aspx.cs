@@ -62,7 +62,7 @@ namespace ElevatorApplication
 
         private int GetSetFloorPosition()
         {
-            lblFloorPosition.Text = ((int)GlobalEnums.Floor.FirstFloor).ToString() + GlobalEnums.defaulFloor;
+            lblFloorPosition.Text = ((int)GlobalEnums.Floor.ZerothFloor).ToString() + GlobalEnums.defaulFloor;
             trInsideButton.Visible = false;
 
             MovementAndPositionTracker obj = new MovementAndPositionTracker();

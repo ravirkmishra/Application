@@ -13,11 +13,12 @@ namespace ElevatorApplication
 
         public enum Floor
         {
-            FirstFloor=1,
+            ZerothFloor=0,
+            FirstFloor,
             SecondFloor,
             ThirdFloor,
-            FourthFloor,
-            FifthFloor
+            FourthFloor
+            
         };
         public enum Time
         {
